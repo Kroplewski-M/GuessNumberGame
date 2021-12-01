@@ -1,0 +1,21 @@
+#gameTitle{
+    text-align: center;
+}
+#numberInput{
+    text-align: center;
+    margin-top: 150px;
+    font-size: xx-large;
+}
+#rules{
+    text-align: center;
+}
+#gNumber{
+    font-size: xx-large;
+    
+}
+body{
+    background-image: url("GameBackground.jpg");
+}
+#btn{
+    font-size: large;
+}
