@@ -8,11 +8,14 @@ console.log("Random Number is: " + randomNumber);
 let  guess;
 
 function getGuess(){
-    guess = document.getElementById("gNumber").value;
+    guess = document.getElementById('gNumber').value;
     console.log(guess);
 
+    //TO DO: ADD TIMER TO REMOVE HTML!
     if(guess > randomNumber){
-        alert("Too High!");
+        //alert("Too High!");
+        let responce = document.getElementById('insert');
+        responce.insertAdjacentHTML('afterbegin', '<h1>Too High</h1>');
     }
     else if(guess < randomNumber){
         alert("Too Low!");
