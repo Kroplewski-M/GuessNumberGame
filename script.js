@@ -1,5 +1,6 @@
 let numberOfTries = 0;
 let casheTries = numberOfTries;
+var numberofItems =0;
 let gameIsDone = false;
 let randomNumber = Math.floor(Math.random()*100);
 if (randomNumber === 0){
@@ -9,22 +10,52 @@ console.log("Random Number is: " + randomNumber);
 
 let  guess;
 
+//ONCE PLAYER GETS CORRECT ANSWER
 function IsGameFinished(){
     if(gameIsDone == true)
     {
+       
+        if(numberofItems == 0)
+        {
+        numberOfTries++;
+        let soundeffect = new Audio("correct.mp3");
+        soundeffect.play();
         let GameDoneTag = `
         <div id="finished">
         <h1 id="GameFinished">Congrats!! You got it right!</h1>
         <button onclick="restartGame()" id="doneButton">Restart Game!</button>
         </div>`
 
-
         console.log("GAME IS DONE!!!");
         let gameDone = document.getElementById('insert');
         gameDone.insertAdjacentHTML('afterbegin',GameDoneTag);
+        numberofItems++;
+        }
+        else
+        {
+            return;
+        }
+    }
+}
+//IF PLAYERS ANSWER IS INCORRECT
+function incorrectAnswer(){
+    numberOfTries++;
+    let soundEffect = new Audio("incorrect.mp3");
+    soundEffect.play();
+
+    if(guess > randomNumber){
+        let responce = document.getElementById('insert');
+        responce.insertAdjacentHTML('afterbegin', '<h1 id="temp">Too High!</h1>');
+    }
+    else if(guess < randomNumber){
+        //alert("Too Low!");
+        let responce = document.getElementById('insert');
+        responce.insertAdjacentHTML('afterbegin', '<h1 id="temp">Too Low!</h1>');
+        
     }
 }
 
+//RELOADS WEBSITE TO RESTART THE GAME --SETS EVERYTHING TO DEFAULT
 function restartGame(){
     location.reload();
 }
@@ -33,6 +64,7 @@ function restartGame(){
 function clearHTML(){
     var remove = document.getElementById("temp").remove();
 }
+
 //ADJUSTS DISPLAY OF NUMBER OF TRIES
 function DisplayNumberOfTries(){
     if(casheTries < numberOfTries)
@@ -54,27 +86,16 @@ function getGuess(){
     guess = document.getElementById('gNumber').value;
     console.log(guess);
 
-    //TO DO: ADD TIMER TO REMOVE HTML!
-    if(guess > randomNumber){
-        //alert("Too High!");
-        let responce = document.getElementById('insert');
-        responce.insertAdjacentHTML('afterbegin', '<h1 id="temp">Too High!</h1>');
-    }
-    else if(guess < randomNumber){
-        //alert("Too Low!");
-        let responce = document.getElementById('insert');
-        responce.insertAdjacentHTML('afterbegin', '<h1 id="temp">Too Low!</h1>');
-        
+    if(guess != randomNumber){
+        incorrectAnswer();
     }
     else if(guess == randomNumber){
-        //alert("Congrats you got it right!");
         gameIsDone = true;
         IsGameFinished();
     }
-    numberOfTries++;
     DisplayNumberOfTries();
     setTimeout(clearHTML,2000);
 }
 
-//CHANGE CONGRATS TO DIFF IF TO MAKE IT GREEN 
+
 
