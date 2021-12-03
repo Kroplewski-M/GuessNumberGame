@@ -19,3 +19,8 @@ body{
 #btn{
     font-size: large;
 }
+#temp{
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: crimson;
+}

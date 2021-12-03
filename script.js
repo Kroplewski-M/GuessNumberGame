@@ -7,6 +7,12 @@ console.log("Random Number is: " + randomNumber);
 
 let  guess;
 
+//CLEAR POP UP
+function clearHTML(){
+    var remove = document.getElementById("temp").remove();
+}
+
+//LOGIC OF THE GAME
 function getGuess(){
     guess = document.getElementById('gNumber').value;
     console.log(guess);
@@ -15,12 +21,20 @@ function getGuess(){
     if(guess > randomNumber){
         //alert("Too High!");
         let responce = document.getElementById('insert');
-        responce.insertAdjacentHTML('afterbegin', '<h1>Too High</h1>');
+        responce.insertAdjacentHTML('afterbegin', '<h1 id="temp">Too High!</h1>');
     }
     else if(guess < randomNumber){
-        alert("Too Low!");
+        //alert("Too Low!");
+        let responce = document.getElementById('insert');
+        responce.insertAdjacentHTML('afterbegin', '<h1 id="temp">Too Low!</h1>');
+
     }
     else if(guess == randomNumber){
-        alert("Congrats you got it right!");
+        //alert("Congrats you got it right!");
+        let responce = document.getElementById('insert');
+        responce.insertAdjacentHTML('afterbegin', '<h1 id="temp">Congrats!! You got it right!</h1>');
+
     }
+    setTimeout(clearHTML,2000);
 }
+
